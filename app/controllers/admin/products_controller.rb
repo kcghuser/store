@@ -38,7 +38,7 @@ class Admin::ProductsController < AdminController
   def update
     respond_to do |format|
       if @admin_product.update(admin_product_params)
-        format.html { redirect_to @admin_product, notice: "Product was successfully updated." }
+        format.html { redirect_to [:admin, @admin_product], notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @admin_product }
       else
         format.html { render :edit, status: :unprocessable_entity }
