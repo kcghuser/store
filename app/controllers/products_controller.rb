@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
+  include Pagy::Backend
   def show
-    @product = Product.find(params[:id])
+    @pagy, @product = Product.find(params[:id])
   end
 end

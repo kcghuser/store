@@ -128,6 +128,8 @@ GEM
       warden (~> 1.2.3)
     drb (2.2.1)
     erubi (1.13.0)
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-aarch64-linux-musl)
     ffi (1.17.0-arm-linux-gnu)
@@ -339,11 +341,12 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
+  faker
   font-awesome-sass (~> 6.5.1)
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
-  pagy (~> 6.2)
+  pagy
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.2)

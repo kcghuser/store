@@ -77,6 +77,8 @@ gem "font-awesome-sass", "~> 6.5.1"
 
 gem "stripe", "~> 10.3"
 
-gem "pagy", "~> 6.2"
+gem 'pagy'
 
 gem "aws-sdk-s3", require: false
+
+gem 'faker'
