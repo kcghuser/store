@@ -1,9 +1,16 @@
-<div class="min-h-screen">
-  <h1>Cart Page</h1>
-  <div id="errorContainer"></div>
-  <div data-controller="cart">
-    <div class="mt-4 font-medium" id="total"></div>
-    <button class="mt-6 py-2 px-4 bg-gray-500 hover:bg-gray-600 rounded text-white" data-action="click->cart#checkout">Checkout</button>
-    <button class="py-2 px-4 bg-gray-500 hover:bg-gray-600 rounded text-white" data-action="click->cart#clear">Clear Cart</button>
-  </div>
-</div>
+<h1>Your Cart</h1>
+
+<% if @cart_items.any? %>
+  <ul>
+    <% @cart_items.each do |item| %>
+      <% product = Product.find(item["product_id"]) %>
+      <li>
+        <%= product.name %> - Size: <%= item["size"] %>
+      </li>
+    <% end %>
+  </ul>
+  <button class="mt-6 py-2 px-4 bg-gray-500 hover:bg-gray-600 rounded text-white">Checkout</button>
+  <button class="py-2 px-4 bg-gray-500 hover:bg-gray-600 rounded text-white" data-action="click->cart#clear">Clear Cart</button>
+<% else %>
+  <p>Your cart is empty.</p>
+<% end %>
