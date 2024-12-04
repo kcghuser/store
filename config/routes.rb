@@ -27,4 +27,6 @@ Rails.application.routes.draw do
   get "success" => "checkouts#success"
   get "cancel" => "checkouts#cancel"
   post "webhooks" => "webhooks#stripe"
+  delete "cart/clear" => "carts#clear_cart", as: :clear_cart
+  post "cart/checkout" => "carts#checkout", as: :checkout_cart
 end
