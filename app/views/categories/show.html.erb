@@ -5,6 +5,19 @@
     <%= form_with url: category_path(@category), method: :get, class: "flex flex-col"  do |form| %>
       <%= form.number_field :min, placeholder: "Min Price", class: "border border-gray-800 rounded-md p-2 w-32" %>
       <%= form.number_field :max, placeholder: "Max Price", class: "border border-gray-800 rounded-md p-2 mt-2 w-32" %>
+      <div class="mt-4">
+        <%= form.label :new, "Show new products only", class: "text-gray-800" %>
+        <%= form.check_box :new, { value: "true", class: "ml-2" } %>
+      </div>
+      <div class="mt-4">
+        <%= form.label :recently_updated, "Show recently updated products only", class: "text-gray-800" %>
+        <%= form.check_box :recently_updated, { value: "true", class: "ml-2" } %>
+      </div>
+      <%= form.submit "Filter", class: "bg-gray-800 text-white rounded-md p-2 mt-2 cursor-pointer" %>
+    <% end %>
+    <%= form_with url: category_path(@category), method: :get, class: "flex flex-col"  do |form| %>
+      <%= form.number_field :min, placeholder: "Min Price", class: "border border-gray-800 rounded-md p-2 w-32" %>
+      <%= form.number_field :max, placeholder: "Max Price", class: "border border-gray-800 rounded-md p-2 mt-2 w-32" %>
       <%= form.submit "Filter", class: "bg-gray-800 text-white rounded-md p-2 mt-2 cursor-pointer" %>
     <% end %>
     <%= form_with url: category_path(@category), method: :get, class: "flex flex-col" do |form| %>

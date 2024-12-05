@@ -4,6 +4,14 @@
   <div data-controller="cart">
     <div class="mt-4 font-medium" id="total"></div>
     <button class="mt-6 py-2 px-4 bg-gray-500 hover:bg-gray-600 rounded text-white" data-action="click->cart#checkout">Checkout</button>
+    <script async
+  src="https://js.stripe.com/v3/buy-button.js">
+</script>
+
+<stripe-buy-button
+  buy-button-id="buy_btn_1QSblkC1n0hLE0wg10wTGvd3"
+  publishable-key="pk_test_51QSaZOC1n0hLE0wgSYnRJ37v9IPsODnKg2FOAhbEpF4qys8J4yhM6z2TXY34Vs24Xgi2u8MiVOsoRIOIFa5kWXpG001vszHQbi">
+</stripe-buy-button>
     <button class="py-2 px-4 bg-gray-500 hover:bg-gray-600 rounded text-white" data-action="click->cart#clear">Clear Cart</button>
   </div>
 </div>
