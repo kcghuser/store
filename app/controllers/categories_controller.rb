@@ -8,6 +8,10 @@ class CategoriesController < ApplicationController
     if params[:min].present?
       @products = @products.where("price >= ?", params[:min])
     end
+    if params[:search].present?
+      search_term = "%#{params[:search].downcase}%"
+      @products = @products.where("LOWER(name) LIKE ?", search_term)
+    end
     @products = @products.page(params[:page]).per(5)
   end
 end
