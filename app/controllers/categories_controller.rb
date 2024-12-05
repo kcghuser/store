@@ -8,5 +8,6 @@ class CategoriesController < ApplicationController
     if params[:min].present?
       @products = @products.where("price >= ?", params[:min])
     end
+    @products = @products.page(params[:page]).per(5)
   end
 end
