@@ -4,13 +4,16 @@ Rails.application.routes.draw do
     resources :products do
       resources :stocks
     end
-    resources :categories
+      resources :categories
   end
-
   devise_for :admins
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
+  # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  # Defines the root path route ("/")
   root "home#index"
 
   authenticated :admin_user do
@@ -22,11 +25,8 @@ Rails.application.routes.draw do
 
   get "admin" => "admin#index"
   get "cart" => "carts#show"
-  post "cart/add_item" => "carts#add_item", as: :add_item_to_cart 
   post "checkout" => "checkouts#create"
   get "success" => "checkouts#success"
   get "cancel" => "checkouts#cancel"
   post "webhooks" => "webhooks#stripe"
-  delete "cart/clear" => "carts#clear_cart", as: :clear_cart
-  post "cart/checkout" => "carts#checkout", as: :checkout_cart
 end
