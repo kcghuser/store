@@ -14,9 +14,11 @@
 <div class="flex flex-wrap justify-center mt-8 items-center gap-10">
   <% @main_categories.each do |category| %>
     <%= link_to category_path(category) do %>
-      <div class="flex flex-col mb-4">
+      <div class="flex flex-col mb-4 items-center">
         <h2 class="text-gray-800 font-medium text-lg text-center mb-6"><%= category.name %></h2>
-      <%= category.image.present? ? image_tag(category.image, class: "max-w-lg", alt: category.name) : image_tag("http://via.placeholder.com/512", alt: "Placeholder image for category") %>     
+        <div class="w-64 h-64 bg-gray-200 flex justify-center items-center overflow-hidden rounded">
+          <%= category.image.present? ? image_tag(category.image, class: "w-full h-full object-cover", alt: category.name) : image_tag("http://via.placeholder.com/512", alt: "Placeholder image for category", class: "w-full h-full object-cover") %> 
+        </div>
       </div>
     <% end %>
   <% end %>
