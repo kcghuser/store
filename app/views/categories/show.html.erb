@@ -1,4 +1,11 @@
 <h1>Category Show Page</h1>
+<div class="text-sm text-gray-600 mb-4">
+  <nav class="flex items-center">
+    <%= link_to "Home", root_path, class: "text-blue-500 hover:underline" %>
+    <span class="mx-2">/</span>
+    <span class="text-gray-800 font-semibold"><%= @category.name %></span>
+  </nav>
+</div>
 <div class="min-h-screen flex justify-center">
   <div class="flex flex-wrap flex-col mt-6">
     <h2 class="text-lg text-gray-800">Filter</h2>
