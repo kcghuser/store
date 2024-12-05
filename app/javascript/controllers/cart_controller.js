@@ -3,7 +3,6 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="cart"
 export default class extends Controller {
   initialize() {
-
     console.log("cart controller initialized")
     const cart = JSON.parse(localStorage.getItem("cart"))
     if (!cart) {
@@ -11,12 +10,19 @@ export default class extends Controller {
     }
 
     let total = 0
-    for (let i=0; i < cart.length; i++) {
+    let pstTotal = 0
+    let gstTotal = 0
+
+    for (let i = 0; i < cart.length; i++) {
       const item = cart[i]
       total += item.price * item.quantity
       const div = document.createElement("div")
       div.classList.add("mt-2")
-      div.innerText = `Item: ${item.name} - $${item.price/100.0} - Size: ${item.size} - Quantity: ${item.quantity}`
+      div.innerText = `Item: ${item.name} - $${(item.price / 100.0).toFixed(2)} - Size: ${item.size} - Quantity: ${item.quantity}`
+      
+      pstTotal += (item.price * item.quantity) * 0.07
+      gstTotal += (item.price * item.quantity) * 0.05
+
       const deleteButton = document.createElement("button")
       deleteButton.innerText = "Remove"
       console.log("item.id: ", item.id)
@@ -27,8 +33,12 @@ export default class extends Controller {
       this.element.prepend(div)
     }
 
+    // Add the totals for PST and GST to the total
+    const totalWithTax = total + pstTotal + gstTotal
+
     const totalEl = document.createElement("div")
-    totalEl.innerText= `Total: $${total/100.0}`
+    totalEl.innerText = `Subtotal: $${(total / 100.0).toFixed(2)} - PST (7%): $${(pstTotal / 100.0).toFixed(2)} - GST (5%): $${(gstTotal / 100.0).toFixed(2)} - Total: $${(totalWithTax / 100.0).toFixed(2)}`
+    
     let totalContainer = document.getElementById("total")
     totalContainer.appendChild(totalEl)
   }
@@ -81,6 +91,4 @@ export default class extends Controller {
         }
       })
   }
-
 }
-
