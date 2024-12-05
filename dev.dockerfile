@@ -8,16 +8,25 @@
 ARG RUBY_VERSION=3.3.4
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
+# Install dependencies (build tools and libraries for native gem compilation)
+RUN apt-get update -qq && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    libxml2-dev \
+    libxslt1-dev \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    zlib1g-dev \
+    nodejs \
+    yarn \
+    && rm -rf /var/lib/apt/lists/*
+
 # Rails app lives here
 WORKDIR /rails
 
 # Set development environment
 ENV RAILS_ENV="development" \
     BUNDLE_WITHOUT=""
-
-# Install packages needed to build gems
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git pkg-config
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -39,5 +48,5 @@ USER 1000:1000
 ENTRYPOINT ["/rails/bin/dev-docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
+EXPOSE 5000
 CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
